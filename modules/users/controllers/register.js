@@ -1,9 +1,30 @@
-const register = (req, res) => {
-    console.log("registe hit")
+const mongoose = require("mongoose")
+const register = async (req, res) => {
+    const usersModel = mongoose.model("users")
+    const {email, password, confirm_password, name, balance} = req.body;
 
-    res.status(200).json({
-        status: "success",
-        message: "Register route hit"
+    // Validation
+    if(!email) throw "Email must be provided"
+    if(!password) throw "password must be provided"
+    if(password.length < 5) throw "password must be at least 5 character long"
+    if(!name) throw "Name is required";
+    if(password !== confirm_password) throw "Password does not match"
+
+    const getDuplicateEmail = await usersModel.findOne({
+        email
+    })
+
+    if(getDuplicateEmail) throw "This email already exist"
+
+   await usersModel.create({
+        name,
+        email,
+        password,
+        balance
+    })
+
+    res.status(201).json({
+        status: "User registered successfully",
     })
 
 }

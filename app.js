@@ -21,13 +21,7 @@ require("./models/users.model");
 
 app.use(express.json());
 
-// app.get("/", (req, res) => {
-//   res.status(200).json({
-//     status: "success",
-//     message: "app running successfully",
-//   });
-// });
-app.use("/users/register", userRoutes);
+app.use("/api/users", userRoutes);
 
 //end of all routes
 
