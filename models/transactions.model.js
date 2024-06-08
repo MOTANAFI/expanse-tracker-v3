@@ -5,22 +5,21 @@ const transactionsSchema = new mongoose.Schema(
     user_id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "users",
-      required: true
+      required: true,
     },
     amount: {
       type: Number,
-      required: true
+      required: true,
     },
-    transaction_type:{
+    transaction_type: {
       type: String,
       required: true,
       enum: ["income", "expense"],
     },
     remarks: {
       type: String,
-      required: true
-    }
-
+      required: true,
+    },
   },
   {
     timestamps: true,
