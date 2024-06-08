@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
-const addIncome = async (req, res) => {
+const addExpense = async (req, res) => {
   const usersModel = mongoose.model("users");
   const transactionsModel = mongoose.model("transactions");
 
@@ -13,14 +13,13 @@ const addIncome = async (req, res) => {
 
   if (!validator.isNumeric(amount.toString()))
     throw "Amount must be a valid number";
-
-    if(amount < 0) throw "Amount must not be a negative"
+  if(amount < 0) throw "Amount must not be a negative"
 
   await transactionsModel.create({
     user_id: req.user._id,
     amount,
     remarks,
-    transaction_type: "income",
+    transaction_type: "expense",
   });
 
   await usersModel.updateOne(
@@ -29,7 +28,7 @@ const addIncome = async (req, res) => {
     },
     {
       $inc: {
-        balance: amount,
+        balance: amount * -1,
       },
     },
     {
@@ -42,4 +41,4 @@ const addIncome = async (req, res) => {
   });
 };
 
-module.exports = addIncome;
+module.exports = addExpense;
