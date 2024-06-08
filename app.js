@@ -17,7 +17,10 @@ mongoose
     console.log("Database connectin failed");
   });
 
+// Model initialization
+
 require("./models/users.model");
+require("./models/transactions.module");
 
 app.use(express.json());
 
