@@ -15,7 +15,7 @@ mongoose
     console.log("Database connected succesfully");
   })
   .catch(() => {
-    console.log("Database connectin failed");
+    console.log("Database connection failed");
   });
 
 // Model initialization
