@@ -40,7 +40,7 @@ const deleteTransaction = async (req, res) => {
       },
       {
         $inc: {
-          balance: getTransaction.amaunt,
+          balance: getTransaction.amount,
         },
       },
       {
