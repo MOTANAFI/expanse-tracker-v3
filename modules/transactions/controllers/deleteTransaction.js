@@ -15,7 +15,6 @@ const deleteTransaction = async (req, res) => {
 
   if (!getTransaction) throw "Transaction not found!!";
 
-  console.log(getTransaction);
 
   if (getTransaction.transaction_type === "income") {
     // income logic herer
